@@ -4,16 +4,14 @@ import { Restaurant } from './restaurant/restaurant.model';
 
 @Component({
   selector: 'app-restaurants',
-  templateUrl: './restaurants.component.html'
+  templateUrl: './restaurants.component.html',
 })
 export class RestaurantsComponent implements OnInit {
+  restaurants: Restaurant[] = [];
 
-  restaurants: Restaurant[] = []
-
-  constructor(private restaurantsService: RestaurantsService) { }
+  constructor(private restaurantsService: RestaurantsService) {}
 
   ngOnInit() {
-    this.restaurants = this.restaurantsService.restaurants()
+    this.restaurantsService.getRestaurants().subscribe(data => this.restaurants = data)
   }
-
 }
